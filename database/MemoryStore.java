@@ -3,6 +3,17 @@ package comp.Box.database;
 import java.util.LinkedList;
 import java.util.Map;
 
+/*
+MemoryStore Class: "This is the main interface of our database system. It manages transactions, directing operations either to the most recent
+transaction's memory or to the main memory depending on whether a transaction is active. It supports starting new transactions,
+rolling back the most recent transaction, and committing all open transactions to the main memory.
+ It's essentially the control center that integrates the transactional functionalities with the basic data operations provided by the Memory class."
+
+
+ "The MemoryStore acts as the orchestrator. It decides where operations should be directed based on the transactional context.
+ This design pattern allows us to extend the system easily, for example, by adding new types of transactions or supporting more
+ complex querying operations without altering the underlying data handling logic."
+ */
 public class MemoryStore {
     Memory memory; // The main memory of the database
     LinkedList<Transaction> transactionList; // Tracks ongoing transaction

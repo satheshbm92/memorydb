@@ -5,6 +5,24 @@ import java.util.Set;
 
 /*
 Set, Get, Delete, Count: These operations are delegated to the Memory instance specific to the transaction.
+
+Transaction Class: "Each Transaction object represents a single transaction block. It contains its own Memory instance,
+allowing it to keep changes isolated from the main memory and other transactions until those changes are committed.
+This isolation is key to supporting transactional integrity and rollback capabilities.
+ The class also tracks which keys have been deleted during the transaction, enabling accurate state reversal on rollbacks
+
+
+  Each Transaction having its own Memory instance supports the ACID properties expected in transactional systems, particularly Atomicity and Isolation.
+  Changes made in a transaction do not affect the global state until they are committed, preventing inconsistent states during transaction execution."
+
+
+  Why a DeletedSet: "In each transaction, tracking which keys have been deleted is crucial for properly handling rollbacks and commits.
+  The deletedSet in each transaction helps to quickly determine which keys have been affected during the transaction without scanning the entire data set."
+
+  Rollbacks: "On a rollback, we can efficiently restore the original state by reverting changes for only those keys recorded in the deletedSet.
+  This is more efficient than tracking all possible changes because deletions are typically fewer than the total number of operations."
+
+
  */
 public class Transaction {
 

@@ -7,6 +7,63 @@ import java.util.Map;
 Set: If a key already exists, the count of the old value is decreased before updating the key to the new value.
 Delete: Decreases the count of the value associated with the key and removes the key from the map.
 Count: Returns the number of keys that have the specified value.
+
+x - 10
+y - 20
+z - 20
+
+10 - 1
+20 - 2
+
+This class acts as the basic data storage unit of our system. It stores key-value pairs and also maintains a count of how many
+times each value occurs across the keys. The class provides fundamental operations to set a value, retrieve a value, delete a key,
+ and count occurrences of values. It's designed to ensure fast access and updates to data which is crucial for the performance of an in-memory database."
+
+public void Set(String key, Integer value) throws DatabaseException {
+    if(key == null || value == null) {
+        throw new DatabaseException("Key or value cannot be null.");
+    }
+    // existing logic...
+}
+
+public void Rollback() throws TransactionException {
+    if (!IsTransacting()) {
+        throw new TransactionException("No transaction to rollback.");
+    }
+    // existing logic...
+}
+
+        public class DatabaseException extends Exception {
+    public DatabaseException(String message) {
+        super(message);
+    }
+
+    public class DatabaseException extends Exception {
+    public DatabaseException(String message) {
+        super(message);
+    }
+}
+
+public class TransactionException extends DatabaseException {
+    public TransactionException(String message) {
+        super(message);
+    }
+}
+
+Use synchronized methods or blocks: Ensure that methods which modify shared resources (like your in-memory data structures) are synchronized.
+This prevents race conditions where two threads might modify the data simultaneously, leading to inconsistent states.
+java
+Copy code
+public synchronized void Set(String key, Integer value) {
+    // implementation details
+}
+
+Map<String, Integer> map = new ConcurrentHashMap<>();
+
+2. Atomicity and Visibility
+
+Ensure that changes made by one thread are visible to others.
+ Java’s volatile variables and atomic classes can be used for these purposes.
  */
 public class Memory {
 
